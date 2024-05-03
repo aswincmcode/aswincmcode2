@@ -1,0 +1,42 @@
+server:
+  port: 8098
+  forward-headers-strategy: NATIVE
+
+spring:
+  servlet:
+    context-path: /
+  kafka:
+    bootstrap-servers: apiserver.dev.netvire.com:9093
+    consumer:
+      group-id: tefiti
+      enable-auto-commit: false
+      auto-offset-reset: earliest
+    topics:
+      response-topic: tefiti-response
+      request-topic: tefiti-request
+      notification-topic: tefiti-notification
+    security:
+      protocol: SSL
+    ssl:
+      enabled: true
+      key-password: Think@123
+      keystore-location: file://C://Users//aswin.cm//Downloads//Certificates//Keystore//local.keystore 2.jks
+      keystore-password: Think@123
+      truststore-location: file://C://Users//aswin.cm//Downloads//Certificates//Truststore//kafka.truststore 2.jks
+      truststore-password: Think@123
+
+application:
+  description: "Message Tunnel CNF micro service"
+  version: "v 1.0"
+  notification-email:
+    from-address: "netvire@thinkpalm.com"
+  tenant-id: 30170728843664
+  edge-id: b1d21cabaa32c354
+  logging:
+    level:
+      org: INFO
+      com:
+        thinkpalm:
+          tefiti: DEBUG
+  file:
+    name: ./application.log
